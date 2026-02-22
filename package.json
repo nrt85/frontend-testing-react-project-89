@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "test": "vitest",
-    "preview": "vite preview"
+    "watch": "vitest",
+    "watch:ui": "vitest --ui",
+    "preview": "vitest-preview"
   },
   "dependencies": {
     "@hexlet/chatbot-v2": "^0.2.5",

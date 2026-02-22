@@ -5,6 +5,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from "@testing-library/user-event";
 import Widget from '@hexlet/chatbot-v2';
+import { debug } from 'vitest-preview'
 import '@hexlet/chatbot-v2/styles';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,9 +19,13 @@ describe('Chatbot Widget', () => {
     const user = userEvent.setup();
     const steps = readFixture("minimalSteps.js");
     render(Widget(steps));
+    // debug();
     screen.debug();
     expect(screen.getByText('Открыть Чат')).toBeInTheDocument();
     await user.click(screen.getByText('Открыть Чат'))
+    
+    // debug();
+    screen.debug();
     await waitFor(() => {
       expect(screen.getByText('Виртуальный помощник')).toBeInTheDocument()
     })
