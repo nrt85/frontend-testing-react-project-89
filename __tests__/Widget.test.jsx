@@ -2,10 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { describe, it, expect } from 'vitest';
-import { debug } from 'vitest-preview'
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import { userEvent } from "@testing-library/user-event";
 import Widget from '@hexlet/chatbot-v2';
-import steps from '@hexlet/chatbot-v2/example-steps';
 import '@hexlet/chatbot-v2/styles';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -15,10 +14,15 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFixture = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 describe('Chatbot Widget', () => {
-  it('renders without errors', () => {
+  it('renders without errors', async () => {
+    const user = userEvent.setup();
     const steps = readFixture("minimalSteps.js");
     render(Widget(steps));
-    debug();
+    screen.debug();
     expect(screen.getByText('Открыть Чат')).toBeInTheDocument();
+    await user.click(screen.getByText('Открыть Чат'))
+    await waitFor(() => {
+      expect(screen.getByText('Виртуальный помощник')).toBeInTheDocument()
+    })
   });
 });
