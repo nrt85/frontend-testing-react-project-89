@@ -4,7 +4,7 @@
  */
 export default [
   {
-    id: 'only',
+    id: 'welcome',
     messages: ['This is a single step chatbot.'],
     buttons: [],
   },

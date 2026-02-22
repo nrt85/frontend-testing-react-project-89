@@ -1,7 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { describe, it, expect } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { describe, it, expect, afterAll } from 'vitest';
+import { render, screen, waitFor, cleanup } from '@testing-library/react';
 import { userEvent } from "@testing-library/user-event";
 import Widget from '@hexlet/chatbot-v2';
 import { debug } from 'vitest-preview'
@@ -16,6 +16,10 @@ const readFixture = async (filename) => {
   const module = await import(fixturePath);
   return module.default;
 }
+
+afterAll(() => {
+  cleanup()
+})
 
 describe('Chatbot User Interactions', () => {
   describe('Step Transitions', async () => {

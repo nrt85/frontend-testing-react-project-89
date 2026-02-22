@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { describe, it, expect } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { describe, it, expect, afterAll } from 'vitest';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from "@testing-library/user-event";
 import Widget from '@hexlet/chatbot-v2';
 import { debug } from 'vitest-preview'
@@ -13,6 +13,10 @@ const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFixture = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+
+afterAll(() => {
+  cleanup();
+})
 
 describe('Chatbot Widget', () => {
   it('renders without errors', async () => {

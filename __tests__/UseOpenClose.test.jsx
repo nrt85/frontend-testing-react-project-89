@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { describe, it, expect, afterEach, afterAll } from 'vitest';
+import { describe, it, expect, afterAll } from 'vitest';
 import { render, screen, waitFor, cleanup } from '@testing-library/react';
 import { userEvent } from "@testing-library/user-event";
 import Widget from '@hexlet/chatbot-v2';
@@ -14,7 +14,7 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFixture = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 afterAll(() => {
-  render(<></>)
+  cleanup()
 })
 
 describe('Chatbot User Interactions - Modal Window Open/Close', () => {
