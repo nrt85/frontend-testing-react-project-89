@@ -4,6 +4,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from "@testing-library/user-event";
 import Widget from '@hexlet/chatbot-v2';
+import '@hexlet/chatbot-v2/styles';
 import { debug } from 'vitest-preview';
 
 const __filename = fileURLToPath(import.meta.url);
